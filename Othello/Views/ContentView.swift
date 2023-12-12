@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var gameViewModel = GameViewModel.shared
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Othello")
+            Spacer()
+            BoardView(board: gameViewModel.game.getBoard())
+            Spacer()
         }
         .padding()
     }
