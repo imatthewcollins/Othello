@@ -7,6 +7,16 @@
 
 import Foundation
 
-struct Square {
-    var currentPiece: Piece?
+class Square: ObservableObject {
+    @Published var currentPiece: Piece?
+    @Published var isValidMove: Bool
+    
+    init() {
+        self.currentPiece = nil
+        self.isValidMove = false
+    }
+    
+    func setValidMove() {
+        self.isValidMove = true
+    }
 }

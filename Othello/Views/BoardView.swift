@@ -9,14 +9,14 @@ import SwiftUI
 
 struct BoardView: View {
     
-    var board: [[Square]]
+    @ObservedObject var gameViewModel = GameViewModel.shared
     
     var body: some View {
         Grid(horizontalSpacing: 1, verticalSpacing: 1) {
-            ForEach(0..<board.count, id: \.self) { i in
+            ForEach(0..<gameViewModel.game.getBoardSize(), id: \.self) { i in
                 GridRow {
-                    ForEach(0..<board[i].count, id:\.self) { j in
-                        SquareView(square: board[i][j])
+                    ForEach(0..<gameViewModel.game.getBoardSize(), id:\.self) { j in
+                        SquareView(square: gameViewModel.game.board[i][j])
                             .padding(0)
                     }
                 }
@@ -27,6 +27,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(board: [[Square]]())
+        BoardView()
     }
 }

@@ -14,8 +14,15 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Othello")
+            Button {
+                gameViewModel.startGame()
+            } label: {
+                Text("New game")
+            }
             Spacer()
-            BoardView(board: gameViewModel.game.getBoard())
+            Text("\(gameViewModel.currentPlayer != nil ? "\(gameViewModel.currentPlayer == .black ? "Black" : "White") to move" : "")")
+            Spacer()
+            BoardView()
             Spacer()
         }
         .padding()

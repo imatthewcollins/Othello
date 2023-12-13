@@ -9,15 +9,15 @@ import SwiftUI
 
 struct SquareView: View {
     
-    @State var square: Square
+    @ObservedObject var square: Square
     
     var body: some View {
         ZStack {
             Rectangle()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.green)
+                .foregroundColor(self.square.isValidMove ? .gray : .green)
             
-            if let piece = square.currentPiece {
+            if let piece = self.square.currentPiece {
                 Circle()
                     .foregroundColor(piece == .white ? .white : .black)
                     .padding(1)

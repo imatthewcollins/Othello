@@ -7,12 +7,21 @@
 
 import Foundation
 
-struct Game {
+class Game: ObservableObject {
+    
     private let boardSize = 8
-    private var board: [[Square]]
+    @Published var board: [[Square]]
     
     init() {
-        self.board = Array(repeating: Array(repeating: Square(), count: self.boardSize), count: self.boardSize)
+        self.board = [[Square]]()
+        for _ in 0..<self.boardSize {
+            var row = [Square]()
+            for _ in 0..<self.boardSize {
+                row.append(Square())
+            }
+            self.board.append(row)
+        }
+        
         self.board[3][3].currentPiece = .white
         self.board[3][4].currentPiece = .black
         self.board[4][3].currentPiece = .black
@@ -20,7 +29,7 @@ struct Game {
     }
     
     
-    func getBoard() -> [[Square]] {
-        return self.board
+    func getBoardSize() -> Int {
+        return self.boardSize
     }
 }
